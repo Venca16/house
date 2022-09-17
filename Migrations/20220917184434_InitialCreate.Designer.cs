@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HouseRent4.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220916113336_InitialCreate")]
+    [Migration("20220917184434_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -62,8 +62,8 @@ namespace HouseRent4.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Image")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("longblob");
 
                     b.Property<string>("Title")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");

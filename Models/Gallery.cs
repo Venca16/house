@@ -8,7 +8,7 @@ namespace HouseRent4.Models
 
 		public string Title { get; set; }
 
-		public string Image { get; set; }
+		public byte[] Image { get; set; }
 
 		public int imageHeight { get; set; }
 

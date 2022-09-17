@@ -83,7 +83,7 @@ namespace HouseRent4.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Title = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
-                    Image = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    Image = table.Column<byte[]>(type: "longblob", nullable: true),
                     imageHeight = table.Column<int>(type: "int", nullable: false),
                     imageWidth = table.Column<int>(type: "int", nullable: false)
                 },

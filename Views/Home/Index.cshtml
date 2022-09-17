@@ -60,7 +60,8 @@
                 {
                     var number = i + 1;
                     var a = "a-slide slide" + number;
-                    var imageName = @Model.main[i].Image.Split('\\').Last();
+                    //var imageName = @Model.main[i].Image.Split('\\').Last();
+                    var image = @Model.main[i].Image;
 
                     var text = string.Empty;
                         if (i == 0)
@@ -72,7 +73,7 @@
                             text = Model.Home.text2;
                         }
 
-                    <div class="@a" style="background-image: linear-gradient(rgba(255,255,255,0),rgba(255,255,255,1)),  url('/Gallery/Images/@imageName'); background-size: cover; ">
+                    <div class="@a" style="background-image: linear-gradient(rgba(255,255,255,0),rgba(255,255,255,1)),  url('data:image/png;base64, @image;'); background-size: cover; ">
                     <div class="container">
                         <div class="bottom-section scroll-reveal" data-origin="right" data-distance="20%">
                             <h1 class="header-txt text-dark">@text</h1>
@@ -186,7 +187,8 @@
                                     {
                                         var number = i + 1;
                                         var cl = "special-img img-0" + number;
-                                        var image = Model.mainG[i].Image.Split('\\').Last();
+                                        //var image = Model.mainG[i].Image.Split('\\').Last();
+                                        var image = Model.mainG[i].Image;
 
                                         var title = string.Empty;
                                         var text = string.Empty;
@@ -229,7 +231,7 @@
                                         }
                                         <div class="special">
                                         <div class="@cl" >
-                                            <img src="/Gallery/Images/@image" style="height:100%" />
+                                            <img src="data:image/png;base64, @image;" style="height:100%" />
                                         </div>
                                         <div class="special-items spec-01" >
                                             <h2 class="scroll-reveal" data-origin="top" data-distance="20%">@title</h2>

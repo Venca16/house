@@ -197,14 +197,26 @@ namespace HouseRent4.Controllers
 		[Obsolete]
 		public IActionResult Gallery(string Title, IFormFile image)
 		{
-			var imageUpload = UploadFile(image);
-			if (imageUpload == "false")
+			//var imageUpload = UploadFile(image);
+			byte[] imageAsBytes;
+			using (var memoryStream = new MemoryStream())
 			{
-				return View("The File can not be upladed");
+				image.CopyToAsync(memoryStream);
+				using (var img = Image.FromStream(memoryStream))
+				{
+					img.Save(memoryStream, img.RawFormat);
+					imageAsBytes = memoryStream.ToArray();
+					imageHeight = img.Height;
+					imageWidth = img.Width;
+				}
 			}
+			//if (imageUpload == "false")
+			//{
+			//	return View("The File can not be upladed");
+			//}
 			var model = new Gallery()
 			{
-				Image = imageUpload,
+				Image = imageAsBytes,
 				Title = Title,
 				imageWidth = imageWidth,
 				imageHeight = imageHeight
@@ -215,21 +227,21 @@ namespace HouseRent4.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult DeletePhoto(string image) 
+		public IActionResult DeletePhoto(int id) 
 		{
 
-			if (Context.Gallery.Where(x => x.Image == image).Count() == 0)
+			if (Context.Gallery.Where(x => x.Id == id).Count() == 0)
 			{
 				return RedirectToAction("Gallery");
 			}
-			var photo = Context.Gallery.Where(x => x.Image == image).FirstOrDefault();
+			var photo = Context.Gallery.Where(x => x.Id == id).FirstOrDefault();
 			Context.Gallery.Remove(photo);
 			Context.SaveChanges();
-			var filename = image.Split("\\").Last();
-			var imagePath = @"\Gallery\Images\";
-			var uploadPath = this.Environment.WebRootPath + imagePath;
-			if(System.IO.File.Exists(uploadPath + filename))
-				System.IO.File.Delete(uploadPath + filename);
+			//var filename = image.Split("\\").Last();
+			//var imagePath = @"\Gallery\Images\";
+			//var uploadPath = this.Environment.WebRootPath + imagePath;
+			//if(System.IO.File.Exists(uploadPath + filename))
+			//	System.IO.File.Delete(uploadPath + filename);
 
 			return RedirectToAction("Gallery");
 

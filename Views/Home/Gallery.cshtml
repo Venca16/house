@@ -66,13 +66,14 @@
       }
     @foreach (var item in Model.Images)
         {
-               <div class="col-lg-3 col-md-4 col-6">
+            string Simage = System.Convert.ToBase64String(@item.Image, 0, item.Image.Length);
+            <div class="col-lg-3 col-md-4 col-6">
                   <div>
-                    <a class="d-block mb-4 h-100" href="@item.Image"
+                    <a class="d-block mb-4 h-100" href="data:image/png;base64, @Simage;"
                       data-pswp-width="@item.imageWidth" 
                       data-pswp-height="@item.imageHeight" 
                       target="_blank">
-                      <img class="img-fluid img-thumbnail" src="@item.Image" alt="" />
+                      <img class="img-fluid img-thumbnail" src="data:image/png;base64, @Simage;" alt="" />
                     </a>
                   </div>
                 </div>         
