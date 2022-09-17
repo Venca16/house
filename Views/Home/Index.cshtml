@@ -50,54 +50,61 @@
             </div>
         </div>
         <div class="slider container-md">
-            @for (int i = 0; i < Model.main.Count(); i++)
+            @if(Model.main.Count() == 0)
             {
-                var number = i + 1;
-                var a = "a-slide slide" + number;
-                var imageName = @Model.main[i].Image.Split('\\').Last();
+                <p>Няма добавени снимки</p>
+            }
+            else
+            {
+                @for (int i = 0; i < Model.main.Count(); i++)
+                {
+                    var number = i + 1;
+                    var a = "a-slide slide" + number;
+                    var imageName = @Model.main[i].Image.Split('\\').Last();
 
-                var text = string.Empty;
-                    if (i == 0)
-                    {
-                        text = Model.Home.text1;
-                    }
-                    else if (i == 1)
-                    {
-                        text = Model.Home.text2;
-                    }
+                    var text = string.Empty;
+                        if (i == 0)
+                        {
+                            text = Model.Home.text1;
+                        }
+                        else if (i == 1)
+                        {
+                            text = Model.Home.text2;
+                        }
 
-                <div class="@a" style="background-image: linear-gradient(rgba(255,255,255,0),rgba(255,255,255,1)),  url('/Gallery/Images/@imageName'); background-size: cover; ">
-                <div class="container">
-                    <div class="bottom-section scroll-reveal" data-origin="right" data-distance="20%">
-                        <h1 class="header-txt text-dark">@text</h1>
-                        <div class="divider">
-                            <?xml version="1.0" encoding="utf-8" ?>
-                            <!-- Generator: Adobe Illustrator 21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1930 255.5" style="enable-background: new 0 0 1930 255.5;" xml:space="preserve">
-                            <style type="text/css">
-                                .st0 {
-                                    fill: none;
-                                    stroke: #3c3c3c;
-                                    stroke-width: 10;
-                                    stroke-linecap: square;
-                                    stroke-miterlimit: 10;
-                                }
-                            </style>
-                            <polyline class="st0" points="1224,171.8 1181.3,171.8 1139.2,129.6 1065,203.9 970.5,110.4 876,203.6 801.8,129.4 759.7,171.5
-                                    717,171.5 " />
-                            <polyline class="st0" points="5,131.5 757.3,131.5 801.8,176.1 885.9,91.9 868.3,74.2 831.5,111 870.4,149.9 970.2,50.2 1070,149.9
-                                    1108.8,111 1072.1,74.2 1054.4,91.9 1138.5,176.1 1183.1,131.5 1925,131.5 " />
-                            <rect x="921.9" y="26.7" transform="matrix(0.7071 -0.7071 0.7071 0.7071 231.426 707.2043)" class="st0" width="95" height="95" />
-                            <rect x="921.9" y="99.7" transform="matrix(0.7071 -0.7071 0.7071 0.7071 179.8072 728.5855)" class="st0" width="95" height="95" />
-                            <rect x="940.3" y="178.1" transform="matrix(0.7071 -0.7071 0.7071 0.7071 137.3893 746.1556)" class="st0" width="58.2" height="58.2" />
-                                </svg>
+                    <div class="@a" style="background-image: linear-gradient(rgba(255,255,255,0),rgba(255,255,255,1)),  url('/Gallery/Images/@imageName'); background-size: cover; ">
+                    <div class="container">
+                        <div class="bottom-section scroll-reveal" data-origin="right" data-distance="20%">
+                            <h1 class="header-txt text-dark">@text</h1>
+                            <div class="divider">
+                                <?xml version="1.0" encoding="utf-8" ?>
+                                <!-- Generator: Adobe Illustrator 21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1930 255.5" style="enable-background: new 0 0 1930 255.5;" xml:space="preserve">
+                                <style type="text/css">
+                                    .st0 {
+                                        fill: none;
+                                        stroke: #3c3c3c;
+                                        stroke-width: 10;
+                                        stroke-linecap: square;
+                                        stroke-miterlimit: 10;
+                                    }
+                                </style>
+                                <polyline class="st0" points="1224,171.8 1181.3,171.8 1139.2,129.6 1065,203.9 970.5,110.4 876,203.6 801.8,129.4 759.7,171.5
+                                        717,171.5 " />
+                                <polyline class="st0" points="5,131.5 757.3,131.5 801.8,176.1 885.9,91.9 868.3,74.2 831.5,111 870.4,149.9 970.2,50.2 1070,149.9
+                                        1108.8,111 1072.1,74.2 1054.4,91.9 1138.5,176.1 1183.1,131.5 1925,131.5 " />
+                                <rect x="921.9" y="26.7" transform="matrix(0.7071 -0.7071 0.7071 0.7071 231.426 707.2043)" class="st0" width="95" height="95" />
+                                <rect x="921.9" y="99.7" transform="matrix(0.7071 -0.7071 0.7071 0.7071 179.8072 728.5855)" class="st0" width="95" height="95" />
+                                <rect x="940.3" y="178.1" transform="matrix(0.7071 -0.7071 0.7071 0.7071 137.3893 746.1556)" class="st0" width="58.2" height="58.2" />
+                                    </svg>
+                            </div>
+                            <!--.divider-->
+
                         </div>
-                        <!--.divider-->
-
+                        <!--.bottom-section-->
                     </div>
-                    <!--.bottom-section-->
-                </div>
-            </div> 
+                </div> 
+                }
             }
         </div>
 
@@ -173,62 +180,65 @@
                             {
                                 <p class="text-center">Няма добжавени снимки в главната галерия</p>
                             }
-                            @for (int i = 0; i < Model.mainG.Count(); i++)
-                                {
-                                    var number = i + 1;
-                                    var cl = "special-img img-0" + number;
-                                    var image = Model.mainG[i].Image.Split('\\').Last();
+                            else
+                            {
+                                @for (int i = 0; i < Model.mainG.Count(); i++)
+                                    {
+                                        var number = i + 1;
+                                        var cl = "special-img img-0" + number;
+                                        var image = Model.mainG[i].Image.Split('\\').Last();
 
-                                    var title = string.Empty;
-                                    var text = string.Empty;
-                                    var price = string.Empty;
-                                    if (i == 0)
-                                    {
-                                        title = Model.Specials.title1;
-                                        text = Model.Specials.text1;
-                                        price = Model.Specials.price1;
-                                    }
-                                    else if (i == 1)
-                                    {
-                                        title = Model.Specials.title2;
-                                        text = Model.Specials.text2;
-                                        price = Model.Specials.price2;
-                                    }
-                                    else if (i == 2)
-                                    {
-                                        title = Model.Specials.title3;
-                                        text = Model.Specials.text3;
-                                        price = Model.Specials.price3;
-                                    }
-                                    else if (i == 3)
-                                    {
-                                        title = Model.Specials.title4;
-                                        text = Model.Specials.text4;
-                                        price = Model.Specials.price4;
-                                    }
-                                    else if (i == 4)
-                                    {
-                                        title = Model.Specials.title5;
-                                        text = Model.Specials.text5;
-                                        price = Model.Specials.price5;
-                                    }
-                                    else if (i == 5)
-                                    {
-                                        title = Model.Specials.title6;
-                                        text = Model.Specials.text6;
-                                        price = Model.Specials.price6;
-                                    }
-                                    <div class="special">
-                                    <div class="@cl" >
-                                        <img src="/Gallery/Images/@image" style="height:100%" />
-                                    </div>
-                                    <div class="special-items spec-01" >
-                                        <h2 class="scroll-reveal" data-origin="top" data-distance="20%">@title</h2>
-                                        <span class="line scroll-reveal" data-origin="top" data-distance="20%"></span>
-                                        <p class="scroll-reveal" data-origin="bottom" data-distance="30%">@text</p>
-                                        <span class="scroll-reveal" data-origin="bottom" data-distance="60%">@price</span>
-                                    </div>
-                                </div>  
+                                        var title = string.Empty;
+                                        var text = string.Empty;
+                                        var price = string.Empty;
+                                        if (i == 0)
+                                        {
+                                            title = Model.Specials.title1;
+                                            text = Model.Specials.text1;
+                                            price = Model.Specials.price1;
+                                        }
+                                        else if (i == 1)
+                                        {
+                                            title = Model.Specials.title2;
+                                            text = Model.Specials.text2;
+                                            price = Model.Specials.price2;
+                                        }
+                                        else if (i == 2)
+                                        {
+                                            title = Model.Specials.title3;
+                                            text = Model.Specials.text3;
+                                            price = Model.Specials.price3;
+                                        }
+                                        else if (i == 3)
+                                        {
+                                            title = Model.Specials.title4;
+                                            text = Model.Specials.text4;
+                                            price = Model.Specials.price4;
+                                        }
+                                        else if (i == 4)
+                                        {
+                                            title = Model.Specials.title5;
+                                            text = Model.Specials.text5;
+                                            price = Model.Specials.price5;
+                                        }
+                                        else if (i == 5)
+                                        {
+                                            title = Model.Specials.title6;
+                                            text = Model.Specials.text6;
+                                            price = Model.Specials.price6;
+                                        }
+                                        <div class="special">
+                                        <div class="@cl" >
+                                            <img src="/Gallery/Images/@image" style="height:100%" />
+                                        </div>
+                                        <div class="special-items spec-01" >
+                                            <h2 class="scroll-reveal" data-origin="top" data-distance="20%">@title</h2>
+                                            <span class="line scroll-reveal" data-origin="top" data-distance="20%"></span>
+                                            <p class="scroll-reveal" data-origin="bottom" data-distance="30%">@text</p>
+                                            <span class="scroll-reveal" data-origin="bottom" data-distance="60%">@price</span>
+                                        </div>
+                                    </div>  
+                                }
                             }
                             <!--.special-->
                         </div>
