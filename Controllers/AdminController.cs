@@ -243,7 +243,7 @@ namespace HouseRent4.Controllers
 			if (file != null && file.Length > 0)
 			{
 				var imagePath = @"\Gallery\Images\";
-				var uploadPath = this.Environment.WebRootPath + imagePath;
+				var uploadPath = ".." + imagePath;
 
 				if (!Directory.Exists(uploadPath))
 				{
