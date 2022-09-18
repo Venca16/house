@@ -29,7 +29,7 @@ namespace HouseRent4
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddDbContext<ApplicationDbContext>(options =>
-				options.UseMySql(Configuration.GetConnectionString("New"), ServerVersion.AutoDetect(Configuration.GetConnectionString("New"))));
+				options.UseMySql(Configuration.GetConnectionString("DefaultConnection"), ServerVersion.AutoDetect(Configuration.GetConnectionString("DefaultConnection"))));
 			services.AddDefaultIdentity<IdentityUser>(options => {
 				options.SignIn.RequireConfirmedAccount = false;
 				options.Password.RequireDigit = false;

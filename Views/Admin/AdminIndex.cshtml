@@ -83,9 +83,7 @@
             {
                 var number = i + 1;
                 var a = "a-slide slide" + number;
-                //var imageName = Model.main[i].Image.Split('\\').Last();
-                var image = Model.main[i].Image;
-
+                var imageName = Model.main[i].Image.Split('\\').Last();
                 var text = string.Empty;
                     if (i == 0)
                     {
@@ -96,7 +94,7 @@
                         text = Model.Home.text2;
                     }
 
-                <div class="@a" style="background-image: linear-gradient(rgba(255,255,255,0),rgba(255,255,255,1)),  url('data:image/png;base64, @image;'); background-size: cover; ">
+                <div class="@a" style="background-image: linear-gradient(rgba(255,255,255,0),rgba(255,255,255,1)),  url('/Gallery/Images/@imageName'); background-size: cover; ">
                 <div class="container">
                     <div class="bottom-section scroll-reveal" data-origin="right" data-distance="20%">
                         <h1 class="header-txt text-dark">@text</h1>

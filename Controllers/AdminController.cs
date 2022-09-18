@@ -197,26 +197,14 @@ namespace HouseRent4.Controllers
 		[Obsolete]
 		public IActionResult Gallery(string Title, IFormFile image)
 		{
-			//var imageUpload = UploadFile(image);
-			byte[] imageAsBytes;
-			using (var memoryStream = new MemoryStream())
+			var imageUpload = UploadFile(image).Result;
+			if (imageUpload == "false")
 			{
-				image.CopyToAsync(memoryStream);
-				using (var img = Image.FromStream(memoryStream))
-				{
-					img.Save(memoryStream, img.RawFormat);
-					imageAsBytes = memoryStream.ToArray();
-					imageHeight = img.Height;
-					imageWidth = img.Width;
-				}
+				return View("The File can not be upladed");
 			}
-			//if (imageUpload == "false")
-			//{
-			//	return View("The File can not be upladed");
-			//}
 			var model = new Gallery()
 			{
-				Image = imageAsBytes,
+				Image = imageUpload,
 				Title = Title,
 				imageWidth = imageWidth,
 				imageHeight = imageHeight
@@ -227,21 +215,21 @@ namespace HouseRent4.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult DeletePhoto(int id) 
+		public IActionResult DeletePhoto(string image) 
 		{
 
-			if (Context.Gallery.Where(x => x.Id == id).Count() == 0)
+			if (Context.Gallery.Where(x => x.Image == image).Count() == 0)
 			{
 				return RedirectToAction("Gallery");
 			}
-			var photo = Context.Gallery.Where(x => x.Id == id).FirstOrDefault();
+			var photo = Context.Gallery.Where(x => x.Image == image).FirstOrDefault();
 			Context.Gallery.Remove(photo);
 			Context.SaveChanges();
-			//var filename = image.Split("\\").Last();
-			//var imagePath = @"\Gallery\Images\";
-			//var uploadPath = this.Environment.WebRootPath + imagePath;
-			//if(System.IO.File.Exists(uploadPath + filename))
-			//	System.IO.File.Delete(uploadPath + filename);
+			var filename = image.Split("\\").Last();
+			var imagePath = @"\Gallery\Images\";
+			var uploadPath = this.Environment.WebRootPath + imagePath;
+			if(System.IO.File.Exists(uploadPath + filename))
+				System.IO.File.Delete(uploadPath + filename);
 
 			return RedirectToAction("Gallery");
 
@@ -250,7 +238,7 @@ namespace HouseRent4.Controllers
 
 		[Obsolete]
 		[Authorize]
-		private string UploadFile(IFormFile file)
+		private async Task<string> UploadFile(IFormFile file)
 		{
 			if (file != null && file.Length > 0)
 			{
@@ -271,10 +259,10 @@ namespace HouseRent4.Controllers
 
 				using (var fileStream = new FileStream(fullPath, FileMode.Create))
 				{
-					file.CopyTo(fileStream);
+					await file.CopyToAsync(fileStream);
 				}
-				var imgPath = uploadPath + filename;
-				//System.Drawing.Image img = System.Drawing.Image.FromFile(imgPath);
+
+				//Image img = Image.FromFile(uploadPath + filename);
 				imageHeight = 2500;
 				imageWidth = 2500;
 				//img.Dispose();

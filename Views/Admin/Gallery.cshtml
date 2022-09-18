@@ -109,14 +109,14 @@
         {
                <div class="col-lg-3 col-md-4 col-6">
                   <div class="border rounded shadow">
-                    <a class="d-block mb-4 h-100" href="data:image/png;base64, @item.Image;"
+                    <a class="d-block mb-4 h-100" href="@item.Image"
                       data-pswp-width="@item.imageWidth" 
                       data-pswp-height="@item.imageHeight" 
                       target="_blank">
-                      <img class="img-fluid img-thumbnail" src="data:image/png;base64, @item.Image;" alt="" />
+                      <img class="img-fluid img-thumbnail" src="@item.Image" alt="" />
                     </a>
                     <form action="DeletePhoto" method="post">
-                        <input type="text" id="image" name="image" value="@item.Id" hidden>
+                        <input type="text" id="image" name="image" value="@item.Image" hidden>
                         <button type="submit" class="btn btn-danger mb-4">Изтрий</button>
                     </form>
                   </div>
