@@ -197,7 +197,7 @@ namespace HouseRent4.Controllers
 		[Obsolete]
 		public IActionResult Gallery(string Title, IFormFile image)
 		{
-			var imageUpload = UploadFile(image).Result;
+			var imageUpload = UploadFile(image);
 			if (imageUpload == "false")
 			{
 				return View("The File can not be upladed");
@@ -238,7 +238,7 @@ namespace HouseRent4.Controllers
 
 		[Obsolete]
 		[Authorize]
-		private async Task<string> UploadFile(IFormFile file)
+		private string UploadFile(IFormFile file)
 		{
 			if (file != null && file.Length > 0)
 			{
@@ -259,13 +259,13 @@ namespace HouseRent4.Controllers
 
 				using (var fileStream = new FileStream(fullPath, FileMode.Create))
 				{
-					await file.CopyToAsync(fileStream);
+					file.CopyTo(fileStream);
 				}
 
-				//Image img = Image.FromFile(uploadPath + filename);
-				imageHeight = 2500;
-				imageWidth = 2500;
-				//img.Dispose();
+				Image img = Image.FromFile(uploadPath + filename);
+				imageHeight = img.Height;
+				imageWidth = img.Width;
+				img.Dispose();
 
 				return filePath;
 			}
