@@ -242,7 +242,7 @@ namespace HouseRent4.Controllers
 		{
 			if (file != null && file.Length > 0)
 			{
-				var imagePath = @"\Gallery\Images\";
+				var imagePath = @"\Gallery\";
 				var uploadPath = this.Environment.WebRootPath + imagePath;
 
 				if (!Directory.Exists(uploadPath))
@@ -251,7 +251,7 @@ namespace HouseRent4.Controllers
 				}
 
 				var uniqFileName = Guid.NewGuid().ToString();
-				var filename = Path.GetFileName(uniqFileName + "." + file.FileName.Split(".")[1].ToLower());
+				var filename = Path.GetFileName(file.FileName);
 				string fullPath = uploadPath + filename;
 
 				imagePath = imagePath + @"\";
@@ -262,7 +262,7 @@ namespace HouseRent4.Controllers
 					file.CopyTo(fileStream);
 				}
 
-				Image img = Image.FromFile(uploadPath + filename);
+				Image img = Image.FromFile(fullPath);
 				imageHeight = img.Height;
 				imageWidth = img.Width;
 				img.Dispose();
