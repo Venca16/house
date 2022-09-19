@@ -262,7 +262,7 @@ namespace HouseRent4.Controllers
 					file.CopyTo(fileStream);
 				}
 
-				Image img = Image.FromFile(fullPath);
+				Image img = Image.FromFile(uploadPath);
 				imageHeight = img.Height;
 				imageWidth = img.Width;
 				img.Dispose();
