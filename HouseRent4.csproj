@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\Gallery\**" />
+    <Content Remove="wwwroot\Gallery\**" />
+    <EmbeddedResource Remove="wwwroot\Gallery\**" />
+    <None Remove="wwwroot\Gallery\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.25" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
@@ -31,10 +38,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\Gallery\" />
   </ItemGroup>
 
 </Project>
